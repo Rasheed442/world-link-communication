@@ -30,7 +30,7 @@ function Footer() {
               ADDRESS:
             </h4>
             <p className="text-[14px] text-[#CAC7B1] leading-relaxed">
-              Nigeria, West Africa
+             Sierra Leone, West Africa
             </p>
           </div>
 
@@ -47,7 +47,7 @@ function Footer() {
                   href="mailto:info@telemagicgroup.com"
                   className="hover:text-white transition-colors duration-200"
                 >
-                  info@sl.wlnet.com
+                  contact.worldlink@wlc-sl.com
                 </a>
               </p>
             </div>
