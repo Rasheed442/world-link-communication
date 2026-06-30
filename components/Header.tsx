@@ -31,7 +31,7 @@ function Header() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex gap-10 items-center">
-          <div className="flex gap-6 text-[17px] pr-6 font-normal">
+          <div className="flex gap-4 text-[19px] font-serif pr-6 font-normal">
             {navLinks.map((link) => (
               <button
                 type="button"

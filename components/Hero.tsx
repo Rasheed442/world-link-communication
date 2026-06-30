@@ -23,7 +23,7 @@ function Hero() {
 
         <div className="absolute inset-0 bg-black/45" />
 
-        <div className="relative z-10 flex h-full items-center md:items-end px-6 text-white sm:px-8 lg:px-12 pb-16 sm:pb-20 lg:pb-26 max-w-[1400px] mx-auto">
+        <div className="relative z-10 flex h-full items-center md:items-end px- text-white sm:px-8 lg:px-0 pb-16 sm:pb-20 lg:pb-26 max-w-[1400px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -61,7 +61,13 @@ function Hero() {
       >
         <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-center gap-10 lg:gap-16">
           {/* Left: Text */}
-          <div className="flex-1 flex flex-col gap-5 sm:gap-6">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="flex-1 flex flex-col gap-5 sm:gap-6"
+          >
             <h2 className="text-[32px] sm:text-[40px] md:text-[44px] lg:text-[50px] font-normal leading-[1.15] text-gray-900 uppercase">
               Stay Connected <br /> Anytime Anywhere
             </h2>
@@ -71,35 +77,63 @@ function Hero() {
               you&apos;re on the move, off the grid, or in the most demanding
               environments.
             </p>
-            <button className="bg-[#2DB34B] py-3 sm:py-4 px-6 text-[16px] sm:text-[18px] font-medium text-white rounded-sm w-fit hover:bg-[#27a244] transition-colors">
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              className="bg-[#2DB34B] py-3 sm:py-4 px-6 text-[16px] sm:text-[18px] font-medium text-white rounded-sm w-fit hover:bg-[#27a244] transition-colors"
+            >
               Learn More
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
 
           {/* Right: Image Grid */}
-          <div className="flex-1 w-full grid grid-cols-2 gap-2">
-            <div className="col-span-2 rounded-sm overflow-hidden h-44 sm:h-52 lg:h-56">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+            className="flex-1 w-full grid grid-cols-2 gap-2"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
+              className="col-span-2 rounded-sm overflow-hidden h-44 sm:h-52 lg:h-56"
+            >
               <img
                 src={con1.src}
                 alt="WiFi router on desk"
                 className="w-full h-full object-cover"
               />
-            </div>
-            <div className="rounded-sm overflow-hidden h-40 sm:h-48 lg:h-52">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.25 }}
+              className="rounded-sm overflow-hidden h-40 sm:h-48 lg:h-52"
+            >
               <img
                 src={con2.src}
                 alt="Woman using laptop"
                 className="w-full h-full object-cover"
               />
-            </div>
-            <div className="rounded-sm overflow-hidden h-40 sm:h-48 lg:h-52">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.35 }}
+              className="rounded-sm overflow-hidden h-40 sm:h-48 lg:h-52"
+            >
               <img
                 src={con3.src}
                 alt="Man working outdoors"
                 className="w-full h-full object-cover"
               />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </div>

@@ -21,9 +21,23 @@ import ch1 from "@/assets/Images/Mainlogo/ch1.png"
 import ch2 from "@/assets/Images/Mainlogo/ch2.png"
 import ch3 from "@/assets/Images/Mainlogo/ch3.png"
 import ch4 from "@/assets/Images/Mainlogo/ch4.png"
+// solutions
+import sol1 from "@/assets/Images/Solution/sol1.png"
+import sol2 from "@/assets/Images/Solution/sol2.png"
+import sol3 from "@/assets/Images/Solution/sol3.png"
+import sol4 from "@/assets/Images/Solution/sol4.png"
+import sol5 from "@/assets/Images/Solution/sol5.png"
+import sol6 from "@/assets/Images/Solution/sol6.png"
 
 export {
     logo,
+    sol1,
+    sol2,
+    sol3,
+    sol4,
+    sol5,
+    sol6,
+    enterprise,
     con1,
     con2,
     logo2,
