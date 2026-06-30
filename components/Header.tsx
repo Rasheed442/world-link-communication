@@ -31,7 +31,7 @@ function Header() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex gap-10 items-center">
-          <div className="flex gap-4 text-[19px] font-serif pr-6 font-normal">
+          <div className="flex gap-6 text-[19px] font-normal font-serif pr-6 ">
             {navLinks.map((link) => (
               <button
                 type="button"
@@ -46,7 +46,7 @@ function Header() {
           <button
             type="button"
             onClick={() => handleScrollToSection("contact")}
-            className="bg-[#2DB34B] py-2 font-medium px-5 text-[17px] text-white rounded-sm hover:bg-[#27a244] transition-colors"
+            className="bg-[#2DB34B] py-3 font-medium px-5 font-serif text-[17px] text-white rounded-sm hover:bg-[#27a244] transition-colors"
           >
             Contact Us
           </button>

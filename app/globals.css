@@ -10,6 +10,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-urbanist);
+  --font-serif: var(--font-spline-sans);
   --font-mono: var(--font-spline-sans);
 }
 
