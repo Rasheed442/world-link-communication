@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { industry } from "@/constants";
-import { motion } from "framer-motion";
-import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import React, { useState } from "react";
 
 const industries = [
   {
@@ -58,9 +58,92 @@ const industries = [
     image: industry.energy,
     href: "#",
     description:
-      "In remote energy and land-based operations, reliable communication systems are crucial for safety and continuity. Our satellite solutions provide connectivity for real-time monitoring of equipment, environmental conditions, and personnel, supporting efficient decision-making and rapid emergency response to maintain safe operations in challenging, isolated environments."
+      "In remote energy and land-based operations, reliable communication systems are crucial for safety and continuity. Our satellite solutions provide connectivity for real-time monitoring of equipment, environmental conditions, and personnel, supporting efficient decision-making and rapid emergency response."
   }
 ];
+
+// ── Separate card component so each card owns its own `active` state ──
+function IndustryCard({
+  item,
+  index
+}: {
+  item: (typeof industries)[0];
+  index: number;
+}) {
+  const [active, setActive] = useState(false);
+
+  return (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: -20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.5, delay: index * 0.05, ease: "easeOut" }}
+      className="relative h-[280px] overflow-hidden rounded-sm sm:h-[320px] xl:h-[380px] cursor-pointer"
+      // ── Handles both mouse-enter/leave (desktop) and tap (mobile) ──
+      onHoverStart={() => setActive(true)}
+      onHoverEnd={() => setActive(false)}
+      onTap={() => setActive((prev) => !prev)}
+    >
+      {/* Background image */}
+      <img
+        src={item.image.src}
+        alt={item.title}
+        className={`h-full w-full object-cover transition-transform duration-500 ${
+          active ? "scale-105" : "scale-100"
+        }`}
+      />
+
+      {/* Dark gradient — fades out when active */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent transition-opacity duration-300 ${
+          active ? "opacity-0" : "opacity-100"
+        }`}
+      />
+
+      {/* Blue border */}
+      <div className="absolute inset-0 z-20 rounded-sm border-2 border-[#3b9ede]/80" />
+
+      {/* Green swipe-up overlay — driven by Framer Motion, works on touch too */}
+      <AnimatePresence>
+        {active && (
+          <motion.div
+            key="overlay"
+            initial={{ y: "100%", opacity: 0 }}
+            animate={{ y: "0%", opacity: 1 }}
+            exit={{ y: "100%", opacity: 0 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-0 z-40 flex items-center bg-[#2EA34A] p-6"
+          >
+            <motion.p
+              initial={{ y: 16, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 16, opacity: 0 }}
+              transition={{ duration: 0.35, delay: 0.1, ease: "easeOut" }}
+              className="text-[15px] font-semibold leading-relaxed text-white"
+            >
+              {item.description}
+            </motion.p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Title + Learn more — always visible, sits above overlay via z-50 */}
+      <div
+        className={`absolute bottom-0 left-0 z-50 p-5 transition-opacity duration-300 ${
+          active ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+      >
+        <h3 className="mb-1 text-[16px] font-medium tracking-wide text-white">
+          {item.title}
+        </h3>
+        <p className="text-[14px] text-white underline underline-offset-2 opacity-80">
+          Learn more
+        </p>
+      </div>
+    </motion.div>
+  );
+}
 
 function Performance() {
   return (
@@ -77,42 +160,7 @@ function Performance() {
 
       <div className="mx-auto grid max-w-[1400px] grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {industries.map((item, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.5, delay: index * 0.05, ease: "easeOut" }}
-            className="group relative h-[280px] overflow-hidden rounded-sm sm:h-[320px] xl:h-[380px] cursor-pointer"
-          >
-            <img
-              src={item.image.src}
-              alt={item.title}
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-
-            {/* Base gradient overlay, fades out on hover */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent transition-opacity duration-300 group-hover:opacity-0" />
-
-            <div className="absolute inset-0 z-20 rounded-sm border-2 border-[#3b9ede]/80 transition-all duration-300" />
-
-            {/* Green swipe-up overlay on hover */}
-            <div className="absolute inset-0 z-40 flex overflow-auto  bg-[#2EA34A] p-6 opacity-0 translate-y-full transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0 group-hover:opacity-100">
-              <p className="text-[17px] font-semibold leading-relaxed text-white transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] translate-y-4 group-hover:translate-y-0 ">
-                {item.description}
-              </p>
-            </div>
-
-            {/* Title + Learn more, always on top */}
-            <div className="absolute bottom-0 left-0 z-30 p-5">
-              <h3 className="mb-1 text-[16px] font-medium tracking-wide text-white">
-                {item.title}
-              </h3>
-              <p className="text-[14px] text-white underline underline-offset-2 opacity-80 transition-opacity hover:opacity-100">
-                Learn more
-              </p>
-            </div>
-          </motion.div>
+          <IndustryCard key={index} item={item} index={index} />
         ))}
       </div>
     </div>

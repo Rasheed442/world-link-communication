@@ -96,8 +96,10 @@ function Solution() {
             key={feature.id}
             className="bg-[#EDF4FD] rounded p-6 sm:p-7 border-2 border-[#C8E4F9] flex flex-col gap-3 sm:gap-6 hover:shadow-md transition-shadow duration-200"
           >
-          
-            <Image src={feature.img} alt={feature.title} width={600} height={600} className="" />
+          <div className="h-full w-full">
+            <Image src={feature.img} alt={feature.title} width={600} height={600} className="h-full w-full object-cover" />
+
+          </div>
             <div>
               <h3 className="text-[16px] sm:text-[17px] font-normal text-[#0D0D0D] mb-2 sm:mb-3 leading-snug">
                 {feature.title}

@@ -23,7 +23,7 @@ function Hero() {
 
         <div className="absolute inset-0 bg-black/45" />
 
-        <div className="relative z-10 flex h-full items-center md:items-end px- text-white sm:px-8 lg:px-0 pb-16 sm:pb-20 lg:pb-26 max-w-[1400px] mx-auto">
+        <div className="relative z-10 flex h-full items-center md:items-end px-6 text-white sm:px-8 lg:px-0 pb-16 sm:pb-20 lg:pb-26 max-w-[1400px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
